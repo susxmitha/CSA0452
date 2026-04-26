@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <pthread.h>
+
+void* print(void* arg) 
+{
+    printf("Thread ID: %ld\n", pthread_self());
+    return NULL;
+}
+
+int main() 
+{
+    pthread_t t1, t2;
+
+    pthread_create(&t1, NULL, print, NULL);
+    pthread_create(&t2, NULL, print, NULL);
+
+    pthread_join(t1, NULL);
+    pthread_join(t2, NULL);
+
+    printf("Main thread\n");
+    return 0;
+}
