@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+int main() {
+    int u, f, i, j;
+    char d[10][10][20];  // max 10 users, 10 files each, 19 chars per name
+
+    printf("Enter number of users and files per user: ");
+    scanf("%d %d", &u, &f);
+
+    if (u > 10 || f > 10) {
+        printf("Maximum limit is 10 users and 10 files per user.\n");
+        return 0;
+    }
+
+    printf("Enter file names:\n");
+    for (i = 0; i < u; i++) {
+        printf("User %d:\n", i + 1);
+        for (j = 0; j < f; j++) {
+            scanf("%19s", d[i][j]);  // prevents overflow
+        }
+    }
+
+    printf("\nDirectory Structure:\n");
+    for (i = 0; i < u; i++) {
+        printf("\nUser %d:\n", i + 1);
+        for (j = 0; j < f; j++) {
+            printf("%s\n", d[i][j]);
+        }
+    }
+
+    return 0;
+}
