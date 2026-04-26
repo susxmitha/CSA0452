@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+int main() 
+{
+    int n, i;
+    char f[10][20];
+
+    printf("Enter number of files: ");
+    scanf("%d", &n);
+
+    if (n > 10) {
+        printf("Maximum 10 files allowed.\n");
+        return 0;
+    }
+
+    printf("Enter file names:\n");
+    for (i = 0; i < n; i++)
+        scanf("%19s", f[i]);  // prevents overflow
+
+    printf("\nFiles:\n");
+    for (i = 0; i < n; i++)
+        printf("%s\n", f[i]);
+
+    return 0;
+}
