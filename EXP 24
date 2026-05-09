@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main() {
+    int fd;
+    char buf[20];
+
+    fd = open("a.txt", O_CREAT | O_RDWR, 0644);
+
+    if(fd < 0) {
+        printf("File error\n");
+        return 1;
+    }
+
+    write(fd, "Hello", 5);
+
+    lseek(fd, 0, SEEK_SET);
+
+    read(fd, buf, 5);
+    buf[5] = '\0';
+
+    printf("File Content: %s\n", buf);
+
+    close(fd);
+
+    return 0;
+}
